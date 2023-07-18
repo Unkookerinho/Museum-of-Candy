@@ -1,0 +1,408 @@
+/* 
+    CSS RESET 
+*/
+
+/* Better box sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Delete default margin, padding and font style */
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* Responsive images etc. */
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+
+/*
+    VARIABLES
+*/
+
+:root {
+    --clr-primary: #F5D9D5;
+    --clr-secondary: #DEC0DE;
+    --clr-header: #EA1C2C;
+    --clr-paragraph: #F498B8;
+
+    --fw-thin: 200;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+}
+
+/*
+    SMOOTH SCROLLING THROUGH NAV OPTIONS
+*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+/*
+    BODY
+*/
+
+body {
+    min-height: 100vh;
+
+
+    background-color: #F5D9D5;
+
+    font-family: 'Nunito';
+}
+
+/*
+    NAVBAR
+*/
+
+nav {
+    position: fixed;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    font-size: 1.5rem;
+    font-weight: var(--fw-thin);
+    text-transform: uppercase;
+
+    background-color: var(--clr-secondary);
+}
+    h1 {
+        cursor: default;
+        color: var(--clr-header);
+    }
+
+/* Making sure both above section and below section 
+   are same distance from edges of the screen */
+.above {
+    padding: 0.5rem 1.25rem;
+}
+.below {
+    margin-top: 0.5rem 1.25rem;
+    padding: 0.5rem;
+}
+
+/* Setting up nav options */
+ul {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+
+    gap: 1rem;
+}
+    a {
+        text-decoration: none;
+        color: white;
+
+        cursor: pointer;
+
+        transition: color 0.3s;
+    }
+    a:hover {
+        color: var(--clr-header);
+    }
+
+/* Hiding hamburger on wider screen */
+.hamburger {
+    cursor: pointer;
+    display: none;
+    height: fit-content;
+}
+    #checkbox {
+        display: none;
+    }
+
+/*
+    NAVBAR MEDIA
+*/
+
+@media(max-width:575px) {
+
+    /* Setting up sections above and below, so they cover 
+       all of the navbar and .above is above .below */
+    .above {
+        height: 100%;
+        width: 100%;
+        background-color: var(--clr-secondary);
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        z-index: 2;
+    }
+    .below {
+        position: fixed;
+        width: 100%;
+        left: 0;
+
+        padding: 0.5rem 1.25rem;
+        
+        transform: translateY(-100%); /* Hiding nav options */
+        opacity: 0;
+
+        background-color: var(--clr-secondary);
+
+        z-index: 1;
+
+        transition: transform 0.5s, opacity 0.5s;
+    }
+    .below ul {
+        flex-direction: column;
+    }
+
+    /* Hamburger functionality */
+    .hamburger {
+        display: block;
+    }
+    #checkbox:checked ~ .below {
+        transform: translateY(2.69rem); /* Making nav options appear from the top */
+        opacity: 1;
+    }
+}
+
+/*
+    MUSEUM/OF/CANDY
+*/
+
+.museum {
+    display: none;
+    color: white;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    font-weight: var(--fw-thin);
+}
+.museum span {
+    color: var(--clr-header);
+}
+
+/*
+    MAIN 
+*/
+
+main {
+    min-height: 100vh;
+    display: grid;
+}
+
+h3 {
+    color: var(--clr-header);
+    font-size: 2rem;
+    font-weight: var(--fw-thin);
+}
+
+.lollipop {
+    display: none;
+}
+
+@media(min-width:940px) {
+    .lollipop {
+        display: block;  
+        width: 6rem;
+        align-self: center;
+    }
+}
+
+p {
+    color: var(--clr-paragraph);
+    font-weight: var(--fw-thin);
+    font-size: 1.1rem;
+    line-height: 2.5rem;
+}
+
+#home {
+    scroll-margin-top: 5rem;
+}
+
+#about {
+    scroll-margin-top: 20rem;
+}
+
+.about, .history, .casting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 4.6rem;
+}
+
+@media(max-width:425px) { 
+
+    .about, .history, .casting {
+        padding: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+/*
+    FIRST MEDIA
+*/
+
+@media(min-width:768px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 48px 2fr 1fr;
+        grid-template-areas: 
+        "nav nav"
+        "hand hand"
+        "milk about"
+        "history gumball"
+        "sprinkles casting";
+    }
+
+    nav {
+        grid-area: nav;
+    }
+
+    .hand {
+        grid-area: hand;
+    }
+
+    .milk, .about, .history, .gumball, .sprinkles, .casting {
+        align-self: center;
+    }
+
+    .about, .history, .casting {
+        padding: 0;
+    }
+
+    .milk {
+        grid-area: milk;
+    }
+
+    .about {
+        grid-area: about;
+    }
+
+    .history {
+        grid-area: history;
+    }
+
+    .gumball {
+        grid-area: gumball;
+    }
+
+    .sprinkles {
+        grid-area: sprinkles;
+    }
+
+    .casting {
+        grid-area: casting;
+    }
+}
+
+
+/* Minor change */
+
+@media(min-width:830px) {
+    .about, .history, .casting {
+        padding: 1.5rem;
+    }
+}
+
+/* 
+    SECOND CHANGE 
+*/
+
+@media(min-width:1000px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 48px 1fr 1fr;
+        grid-template-areas: 
+        "nav nav"
+        "museum hand"
+        "milk about"
+        "history gumball"
+        "sprinkles casting";
+    }
+
+    nav {
+        grid-area: nav;
+    }
+
+    .museum {
+        grid-area: museum;
+        display: block;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h3 {
+        font-size: 2.15rem;
+    }
+    .lollipop {
+        width: 8rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+/*  Font size adjust */
+
+@media(min-width:1150px) {   
+    h3 {
+        font-size: 2.3rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media(min-width:1300px) {   
+    .museum {
+        font-size: 2.5rem;
+    }
+}
+
+@media(min-width:1450px) {   
+    .museum {
+        font-size: 2.75rem;
+    }
+    h3 {
+        font-size: 2.45rem;
+    }
+    p {
+        font-size: 1.3rem;
+    }
+}
+
+@media(min-width:1600px) {   
+    .museum {
+        font-size: 3rem;
+    }
+}
+
+@media(min-width:1750px) {   
+    .museum {
+        font-size: 3.25rem;
+    }
+}
+
+@media(min-width:1900px) {   
+    .museum {
+        font-size: 3.5rem;
+    }
+    h3 {
+        font-size: 2.6rem;
+    }
+    p {
+        font-size: 1.4rem;
+    }
+}
