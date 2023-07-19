@@ -5,7 +5,7 @@ I didn't like idea of using bootstrap, so I recreated it with vanilla CSS. Page 
 
 ### Screenshot
 
-<img src="images/screenshot.png"/>
+<img src="images/screenshot.webp"/>
 
 ### Links
 
